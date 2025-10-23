@@ -13,6 +13,8 @@
 </head>
 <body>
 
+
+
 <h1>Formular mit allen Input-Typen</h1>
 
 <form id="demoForm" data-parsley-validate>
@@ -21,6 +23,10 @@
 
     <label>Checkbox:</label>
     <input type="checkbox" name="agb" required> AGB akzeptieren
+
+    <label>Password:</label>
+    <input type="password" name="passwort" required minlength="6"
+           data-parsley-uppercase="3" placeholder="Mind. 6 Zeichen, 1 Großbuchstabe">
 
     <label>Color:</label>
     <input type="color" name="farbe" value="#ff0000">
@@ -48,10 +54,6 @@
     <label>Number:</label>
     <input type="number" name="menge" min="1" max="100" required>
 
-    <label>Password:</label>
-    <input type="password" name="passwort" required minlength="6"
-           data-parsley-uppercase="1" placeholder="Mind. 6 Zeichen, 1 Großbuchstabe">
-
     <label>Radio:</label>
     <input type="radio" name="geschlecht" value="m" required> M
     <input type="radio" name="geschlecht" value="w"> W
@@ -60,12 +62,8 @@
     <input type="range" name="lautstaerke" min="0" max="100" value="50" oninput="rangeOut.value = this.value">
     <output id="rangeOut">50</output>
 
-    <input type="reset" value="Zurücksetzen">
-
     <label>Search:</label>
     <input type="search" name="suche" placeholder="Suchbegriff">
-
-    <input type="submit" value="Formular absenden">
 
     <label>Tel:</label>
     <input type="tel" name="telefon" pattern="[0-9+\s]+" placeholder="+43 123 456 789">
@@ -81,28 +79,23 @@
 
     <label>Week:</label>
     <input type="week" name="woche">
+
+    <input type="reset" value="Zurücksetzen">
+
+    <input type="submit" value="Formular absenden">
 </form>
 
 <!-- Parsley.js -->
-<script src="https://cdn.jsdelivr.net/npm/parsleyjs"></script>
+
 
 <!-- Eigenes JS -->
-<script src="../JavaScript/script.js"></script>
 
-<script>
-    // Parsley Custom Validator für Großbuchstaben im Passwort
-    window.Parsley.addValidator('uppercase', {
-        requirementType: 'number',
-        validateString: function(value, requirement) {
-            const count = (value.match(/[A-Z]/g) || []).length;
-            return count >= requirement;
-        },
-        messages: {
-            en: 'Password must have at least %s uppercase letters.',
-            de: 'Das Passwort muss mindestens %s Großbuchstaben enthalten.'
-        }
-    });
-</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/parsleyjs"></script>
+
+<script src="../JavaScript/script.js"></script>
 
 </body>
 </html>
