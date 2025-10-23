@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formular mit allen Input-Typen</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../CSS/style.css">
+
+    <!-- Parsley.js CSS optional -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/parsleyjs/src/parsley.css">
+</head>
+<body>
+
+<h1>Formular mit allen Input-Typen</h1>
+
+<form id="demoForm" data-parsley-validate>
+    <label>Button:</label>
+    <input type="button" value="Klick mich" onclick="alert('Button gedrückt!')">
+
+    <label>Checkbox:</label>
+    <input type="checkbox" name="agb" required> AGB akzeptieren
+
+    <label>Color:</label>
+    <input type="color" name="farbe" value="#ff0000">
+
+    <label>Date:</label>
+    <input type="date" name="datum" required>
+
+    <label>Datetime-local:</label>
+    <input type="datetime-local" name="zeitpunkt">
+
+    <label>Email:</label>
+    <input type="email" name="email" required placeholder="name@example.com">
+
+    <label>File:</label>
+    <input type="file" name="datei" accept=".jpg,.png,.pdf">
+
+    <input type="hidden" name="hiddenID" value="12345">
+
+    <label>Image:</label>
+    <input type="image" src="https://via.placeholder.com/100" alt="Absenden">
+
+    <label>Month:</label>
+    <input type="month" name="monat">
+
+    <label>Number:</label>
+    <input type="number" name="menge" min="1" max="100" required>
+
+    <label>Password:</label>
+    <input type="password" name="passwort" required minlength="6"
+           data-parsley-uppercase="1" placeholder="Mind. 6 Zeichen, 1 Großbuchstabe">
+
+    <label>Radio:</label>
+    <input type="radio" name="geschlecht" value="m" required> M
+    <input type="radio" name="geschlecht" value="w"> W
+
+    <label>Range:</label>
+    <input type="range" name="lautstaerke" min="0" max="100" value="50" oninput="rangeOut.value = this.value">
+    <output id="rangeOut">50</output>
+
+    <input type="reset" value="Zurücksetzen">
+
+    <label>Search:</label>
+    <input type="search" name="suche" placeholder="Suchbegriff">
+
+    <input type="submit" value="Formular absenden">
+
+    <label>Tel:</label>
+    <input type="tel" name="telefon" pattern="[0-9+\s]+" placeholder="+43 123 456 789">
+
+    <label>Text:</label>
+    <input type="text" name="benutzer" required>
+
+    <label>Time:</label>
+    <input type="time" name="zeit">
+
+    <label>URL:</label>
+    <input type="url" name="website" placeholder="https://example.com">
+
+    <label>Week:</label>
+    <input type="week" name="woche">
+</form>
+
+<!-- Parsley.js -->
+<script src="https://cdn.jsdelivr.net/npm/parsleyjs"></script>
+
+<!-- Eigenes JS -->
+<script src="../JavaScript/script.js"></script>
+
+<script>
+    // Parsley Custom Validator für Großbuchstaben im Passwort
+    window.Parsley.addValidator('uppercase', {
+        requirementType: 'number',
+        validateString: function(value, requirement) {
+            const count = (value.match(/[A-Z]/g) || []).length;
+            return count >= requirement;
+        },
+        messages: {
+            en: 'Password must have at least %s uppercase letters.',
+            de: 'Das Passwort muss mindestens %s Großbuchstaben enthalten.'
+        }
+    });
+</script>
+
+</body>
+</html>
